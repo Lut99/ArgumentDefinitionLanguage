@@ -1,0 +1,25 @@
+{
+    "name": "argument-definition-language",
+    "displayName": "Argument Definition Language",
+    "description": "Syntax highlighting for Lut99's Argument Definition Language, part of the ArgumentParser project",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.51.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "adl",
+            "aliases": ["Argument Definition Language", "adl"],
+            "extensions": [".adl"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "adl",
+            "scopeName": "source.adl",
+            "path": "./syntaxes/adl.tmLanguage.json"
+        }]
+    }
+}
