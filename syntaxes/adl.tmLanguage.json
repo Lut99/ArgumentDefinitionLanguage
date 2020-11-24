@@ -2,30 +2,57 @@
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Argument Definition Language",
 	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
+		{ "include": "#single-line-comment" },
+		{ "include": "#multi-line-comment" },
+
+		{ "include": "#identifier" },
+
+		{ "include": "#positional" },
+
+		{ "include": "#regex" },
+		{ "include": "#string" },
+		{ "include": "#number" }
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.adl",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+		"escaped-char": {
+			"name": "constant.character.escape.adl",
+			"match": "\\\\."
 		},
-		"strings": {
+
+		"single-line-comment": {
+			"name": "comment.line.double-slash.adl",
+			"match": "//.*$"
+		},
+		"multi-line-comment": {
+			"name": "comment.block.adl",
+			"begin": "/\\*",
+			"end": "\\*/"
+		},
+
+		"identifier": {
+			"name": "variable.name",
+			"match": "[A-Za-z][A-Za-z0-9_-]*"
+		},
+		
+		"regex": {
+			"name": "string.regexp.adl",
+			"begin": "r\"",
+			"end": "\"",
+			"patterns": [
+				{ "include": "#escaped-char" }
+			]
+		},
+		"string": {
 			"name": "string.quoted.double.adl",
 			"begin": "\"",
 			"end": "\"",
 			"patterns": [
-				{
-					"name": "constant.character.escape.adl",
-					"match": "\\\\."
-				}
+				{ "include": "#escaped-char" }
 			]
+		},
+		"number": {
+			"name": "constant.numeric.adl",
+			"match": "(---)?([0-9])+"
 		}
 	},
 	"scopeName": "source.adl"
